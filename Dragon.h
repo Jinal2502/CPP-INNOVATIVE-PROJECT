@@ -13,7 +13,7 @@ public:
     Dragon();
     
     // Destructor
-    ~Destructor();
+    ~Dragon();
     
     // Override attack - Alternates between melee and fire breath
     void attack(Character* target) override;
