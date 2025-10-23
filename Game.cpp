@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "MatrixUI.h"
 #include <iostream>
 #include <fstream>
 #include <limits>
@@ -57,14 +58,27 @@ int Game::getValidInput(int min, int max) {
 
 // Start the game
 void Game::startGame() {
-    clearScreen();
-    std::cout << "========================================\n";
-    std::cout << "     CHRONICLES IN TEXT - RPG GAME      \n";
-    std::cout << "========================================\n";
-    std::cout << "    A Text-Based Adventure Awaits!      \n";
-    std::cout << "========================================\n\n";
+    MatrixUI::clearScreen();
     
-    pressEnterToContinue();
+    // Matrix loading effect
+    MatrixUI::printLoadingBar(2);
+    
+    // Matrix rain effect
+    MatrixUI::printMatrixRain(5);
+    
+    // Matrix logo
+    MatrixUI::printMatrixLogo();
+    
+    // Animated welcome text
+    MatrixUI::animateMatrixText("INITIALIZING CHRONICLES IN TEXT SYSTEM...", 80);
+    MatrixUI::sleep(1000);
+    
+    MatrixUI::animateMatrixText("WELCOME TO THE TEXT-BASED REALM", 60);
+    MatrixUI::sleep(500);
+    
+    MatrixUI::printGlitchEffect("ENTER THE CHRONICLES");
+    
+    MatrixUI::pressEnterToContinue();
     
     while (isRunning) {
         mainMenu();
@@ -73,17 +87,22 @@ void Game::startGame() {
 
 // Main menu
 void Game::mainMenu() {
-    clearScreen();
-    std::cout << "\n╔════════════════════════════════╗\n";
-    std::cout << "║        MAIN MENU               ║\n";
-    std::cout << "╚════════════════════════════════╝\n";
-    std::cout << "  1. New Game\n";
-    std::cout << "  2. Load Game\n";
-    std::cout << "  3. Instructions\n";
-    std::cout << "  4. Exit\n";
-    std::cout << "════════════════════════════════\n";
-    std::cout << "Choose an option (1-4): ";
+    MatrixUI::clearScreen();
     
+    // Matrix art
+    MatrixUI::printMatrixArt();
+    
+    // Create menu options
+    std::vector<std::string> options = {
+        "1. 🎮 NEW GAME",
+        "2. 📁 LOAD GAME", 
+        "3. 📖 INSTRUCTIONS",
+        "4. 🚪 EXIT MATRIX"
+    };
+    
+    MatrixUI::printMatrixMenu("MAIN MENU", options);
+    
+    std::cout << MatrixUI::BRIGHT_RED << "Choose an option: " << MatrixUI::RESET;
     int choice = getValidInput(1, 4);
     
     switch (choice) {
