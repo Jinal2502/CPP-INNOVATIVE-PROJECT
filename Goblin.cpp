@@ -6,7 +6,6 @@
 // Constructor - Weak enemy, low stats, low XP reward
 Goblin::Goblin() 
     : Enemy("Goblin", 40, 8, 30), canDodge(true) {
-    srand(time(0));
 }
 
 // Destructor

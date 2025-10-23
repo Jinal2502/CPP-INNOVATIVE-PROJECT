@@ -225,11 +225,34 @@ void Game::createCharacter() {
 
 // Generate random enemy
 Enemy* Game::generateRandomEnemy() {
-    int roll = rand() % 100;
+    // Use better randomization with current time + battlesWon for variety
+    static unsigned int seed = time(0);
+    seed = seed * 1103515245 + 12345; // Linear congruential generator
+    int roll = (seed >> 16) % 100;
     
-    if (roll < 50) {
+    // Adjust probabilities based on battles won for better progression
+    int goblinChance, orcChance, dragonChance;
+    
+    if (battlesWon < 2) {
+        // Early game: mostly goblins
+        goblinChance = 70;
+        orcChance = 25;
+        dragonChance = 5;
+    } else if (battlesWon < 4) {
+        // Mid game: more orcs
+        goblinChance = 50;
+        orcChance = 40;
+        dragonChance = 10;
+    } else {
+        // Late game: more variety
+        goblinChance = 40;
+        orcChance = 45;
+        dragonChance = 15;
+    }
+    
+    if (roll < goblinChance) {
         return new Goblin();
-    } else if (roll < 85) {
+    } else if (roll < goblinChance + orcChance) {
         return new Orc();
     } else {
         return new Dragon();
@@ -367,9 +390,15 @@ void Game::exploreWorld() {
                 return; // Return to main menu
             case 6:
                 if (battlesWon >= 5) {
+                    std::cout << "\n🐉 You have earned the right to challenge the Ancient Dragon!\n";
+                    std::cout << "This is the final battle. Are you ready? (Press Enter to continue)\n";
+                    pressEnterToContinue();
                     Enemy* boss = generateBossEnemy();
                     combat(boss);
                     delete boss;
+                } else {
+                    std::cout << "\n❌ You need to win " << (5 - battlesWon) << " more battles before challenging the Dragon!\n";
+                    pressEnterToContinue();
                 }
                 break;
         }
@@ -476,6 +505,7 @@ void Game::combat(Enemy* enemy) {
             std::cout << "════════════════════════════════════════════════════════\n";
             player->gainXP(enemy->getXPReward());
             battlesWon++;
+            std::cout << "🎯 Total Battles Won: " << battlesWon << "/5\n";
             giveRewards();
             
             // Check for game completion

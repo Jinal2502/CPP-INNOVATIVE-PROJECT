@@ -9,9 +9,6 @@ Archer::Archer(std::string name)
     std::cout << "\n" << name << " the Archer has been created!\n";
     std::cout << "Class Bonus: +5 ATK, 30 Arrows, 25% Critical Hit Chance\n";
     std::cout << "Special Skill: Multi-Shot (fires 3 arrows in quick succession)\n";
-    
-    // Seed random for critical hits
-    srand(time(0));
 }
 
 // Destructor
