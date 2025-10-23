@@ -3,6 +3,8 @@
 
 #include "Character.h"
 
+class Enemy; // Forward declaration
+
 class Archer : public Character {
 private:
     int arrows;
@@ -19,7 +21,7 @@ public:
     void attack(Character* target) override;
     
     // Special skill - Multi-shot (attacks 3 times)
-    void useMultiShot(Character* target);
+    void useMultiShot(Enemy* target);
     
     // Arrow management
     void collectArrows(int amount);

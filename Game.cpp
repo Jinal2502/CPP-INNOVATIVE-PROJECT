@@ -512,7 +512,11 @@ void Game::combat(Enemy* enemy) {
 // Perform attack
 void Game::performAttack(Enemy* enemy) {
     std::cout << "\n--- Your Attack ---\n";
-    player->attack(enemy);
+    if (enemy != nullptr) {
+        std::cout << player->getName() << " attacks " << enemy->getName() 
+                  << " for " << player->getAttackPower() << " damage!\n";
+        enemy->takeDamage(player->getAttackPower());
+    }
 }
 
 // Use special skill

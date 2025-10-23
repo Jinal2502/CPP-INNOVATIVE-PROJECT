@@ -23,7 +23,7 @@ public:
     
     // Core methods (virtual for polymorphism)
     virtual void attack(Character* target);
-    void takeDamage(int damage);
+    virtual void takeDamage(int damage);
     
     // Display methods
     void displayHealthBar() const;

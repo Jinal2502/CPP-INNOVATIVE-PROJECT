@@ -1,4 +1,5 @@
 #include "Mage.h"
+#include "Enemy.h"
 
 // Constructor - Mage has lower health but high attack and mana
 Mage::Mage(std::string name) 
@@ -24,7 +25,7 @@ void Mage::attack(Character* target) {
 }
 
 // Special skill - Fireball
-void Mage::castFireball(Character* target) {
+void Mage::castFireball(Enemy* target) {
     const int manaCost = 20;
     
     if (!hasMana(manaCost)) {

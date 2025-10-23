@@ -3,6 +3,8 @@
 
 #include "Character.h"
 
+class Enemy; // Forward declaration
+
 class Mage : public Character {
 private:
     int mana;
@@ -20,7 +22,7 @@ public:
     void attack(Character* target) override;
     
     // Special skill - Fireball (costs mana, high damage)
-    void castFireball(Character* target);
+    void castFireball(Enemy* target);
     
     // Mana management
     void regenerateMana();

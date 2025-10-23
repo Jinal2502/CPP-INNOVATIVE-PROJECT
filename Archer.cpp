@@ -1,4 +1,5 @@
 #include "Archer.h"
+#include "Enemy.h"
 #include <cstdlib>
 #include <ctime>
 
@@ -45,7 +46,7 @@ void Archer::attack(Character* target) {
 }
 
 // Special skill - Multi-shot
-void Archer::useMultiShot(Character* target) {
+void Archer::useMultiShot(Enemy* target) {
     if (arrows < 3) {
         std::cout << "Not enough arrows for Multi-Shot! Need 3 arrows. Current: " << arrows << "\n";
         return;
