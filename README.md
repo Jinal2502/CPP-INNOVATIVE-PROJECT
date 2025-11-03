@@ -46,15 +46,26 @@ RPG-Game/
 
 ## 🔧 Compilation Instructions
 
-### Windows (MinGW):
+### Quick Start (Recommended):
+**Windows**: 
+- Double-click `run.bat`, OR
+- In Command Prompt: `run.bat`
+- In PowerShell: `.\run.bat` or `run.bat`
+  
+**Linux/Mac**: 
+- Run `./run.sh` from terminal
+
+### Manual Compilation:
+
+#### Windows (MinGW):
 ```bash
-g++ -std=c++11 main.cpp Game.cpp Character.cpp Warrior.cpp Mage.cpp Archer.cpp Enemy.cpp Goblin.cpp Orc.cpp Dragon.cpp Item.cpp Weapon.cpp Potion.cpp Inventory.cpp -o rpg_game.exe
+g++ -std=c++17 main.cpp Game.cpp Character.cpp Warrior.cpp Mage.cpp Archer.cpp Enemy.cpp Goblin.cpp Orc.cpp Dragon.cpp Item.cpp Weapon.cpp Potion.cpp Inventory.cpp MatrixUI.cpp -o rpg_game.exe
 rpg_game.exe
 ```
 
-### Linux/Mac:
+#### Linux/Mac:
 ```bash
-g++ -std=c++11 main.cpp Game.cpp Character.cpp Warrior.cpp Mage.cpp Archer.cpp Enemy.cpp Goblin.cpp Orc.cpp Dragon.cpp Item.cpp Weapon.cpp Potion.cpp Inventory.cpp -o rpg_game
+g++ -std=c++17 main.cpp Game.cpp Character.cpp Warrior.cpp Mage.cpp Archer.cpp Enemy.cpp Goblin.cpp Orc.cpp Dragon.cpp Item.cpp Weapon.cpp Potion.cpp Inventory.cpp MatrixUI.cpp -o rpg_game
 ./rpg_game
 ```
 
